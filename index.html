@@ -130,7 +130,8 @@
   .trail {
     position: fixed; pointer-events: none; z-index: 2;
     border-radius: 50%;
-    background: var(--blue-300);
+    background: #64dcff;
+    box-shadow: 0 0 6px rgba(100, 220, 255, 0.6);
     animation: trailFade 0.8s ease-out forwards;
   }
   @keyframes trailFade {
@@ -438,6 +439,10 @@
     10%{opacity:.6}
     90%{opacity:.2}
     100%{transform:translateY(-10vh) scale(1);opacity:0}
+  }
+  @keyframes electricRing {
+    0% { width:10px; height:10px; opacity:1; border-width:3px; }
+    100% { width:200px; height:200px; opacity:0; border-width:1px; }
   }
 
   /* ====== Responsive ====== */
@@ -789,7 +794,7 @@ function resize() {
   h = canvas.height = window.innerHeight;
 }
 resize();
-window.addEventListener('resize', () => { resize(); initStars(); });
+window.addEventListener('resize', () => { resize(); initStars(); initCircuit(); });
 
 function initStars() {
   const count = Math.floor(w * h / 1200);
@@ -842,70 +847,147 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// Click burst
+// Click electric burst
 document.addEventListener('click', (e) => {
-  // Outer ring burst
-  for (let i = 0; i < 20; i++) {
-    const angle = (Math.PI * 2 / 20) * i;
-    const speed = Math.random() * 2.5 + 1;
-    stars.push({
-      x: e.clientX, y: e.clientY,
-      r: Math.random() * 2.5 + 1,
-      alpha: 1, baseAlpha: 0.9,
-      twinkleSpeed: -0.04,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      life: 90,
+  // Lightning bolts radiating from click
+  const numBolts = Math.floor(Math.random() * 5) + 6;
+  for (let b = 0; b < numBolts; b++) {
+    const angle = (Math.PI * 2 / numBolts) * b + (Math.random() - 0.5) * 0.5;
+    const len = Math.random() * 120 + 60;
+    const segs = Math.floor(Math.random() * 5) + 4;
+    const pts = [{ x: e.clientX, y: e.clientY }];
+    for (let i = 1; i <= segs; i++) {
+      const t = i / segs;
+      pts.push({
+        x: e.clientX + Math.cos(angle) * len * t + (Math.random() - 0.5) * 40,
+        y: e.clientY + Math.sin(angle) * len * t + (Math.random() - 0.5) * 40,
+      });
+    }
+    electricArcs.push({
+      points: pts,
+      life: 1,
+      decay: 0.03 + Math.random() * 0.02,
+      width: Math.random() * 2 + 1.5,
+      branches: [],
     });
   }
-  // Random scatter
-  for (let i = 0; i < 15; i++) {
+  // Electric spark particles
+  for (let i = 0; i < 25; i++) {
     const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 4 + 1;
+    const speed = Math.random() * 5 + 2;
     stars.push({
       x: e.clientX, y: e.clientY,
-      r: Math.random() * 1.5 + 0.3,
-      alpha: 0.8, baseAlpha: 0.7,
-      twinkleSpeed: -0.05,
+      r: Math.random() * 2 + 0.5,
+      alpha: 1, baseAlpha: 0.9,
+      twinkleSpeed: -0.06,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,
-      life: 50,
+      life: 40 + Math.random() * 20,
+      electric: true,
     });
   }
-  // Trail particles at click
-  for (let i = 0; i < 8; i++) {
-    const t = document.createElement('div');
-    t.className = 'trail';
-    const sz = Math.random() * 7 + 3;
-    t.style.width = sz + 'px'; t.style.height = sz + 'px';
-    t.style.left = (e.clientX + (Math.random() - 0.5) * 30) + 'px';
-    t.style.top = (e.clientY + (Math.random() - 0.5) * 30) + 'px';
-    t.style.animationDuration = '1.2s';
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 1200);
-  }
+  // Ring flash
+  const ring = document.createElement('div');
+  ring.style.cssText = `
+    position:fixed; pointer-events:none; z-index:10;
+    left:${e.clientX}px; top:${e.clientY}px;
+    transform:translate(-50%,-50%);
+    width:10px; height:10px; border-radius:50%;
+    border:2px solid rgba(100,200,255,0.8);
+    box-shadow: 0 0 20px rgba(100,200,255,0.6), 0 0 60px rgba(60,160,255,0.3);
+    animation: electricRing 0.6s ease-out forwards;
+  `;
+  document.body.appendChild(ring);
+  setTimeout(() => ring.remove(), 600);
 });
 
-// Meteors & nebula
-let meteors = [];
-const nebulaBlobs = [
-  { x: 0.2, y: 0.3, r: 350, dx: 0.00003, dy: 0.00002, hue: 140 },
-  { x: 0.75, y: 0.6, r: 280, dx: -0.00002, dy: 0.00003, hue: 150 },
-  { x: 0.5, y: 0.8, r: 400, dx: 0.00002, dy: -0.00004, hue: 130 },
-];
+// Electric currents & circuit board
+let electricArcs = [];
+let circuitLines = [];
+let circuitNodes = [];
 
-function spawnMeteor() {
-  const angle = Math.random() * Math.PI * 0.5 + Math.PI * 0.25; // mostly diagonal
+function initCircuit() {
+  circuitLines = [];
+  circuitNodes = [];
+  // Generate PCB trace grid
+  const gridSpacingX = 120;
+  const gridSpacingY = 120;
+  for (let x = 0; x < w; x += gridSpacingX) {
+    for (let y = 0; y < h; y += gridSpacingY) {
+      const jx = x + (Math.random() - 0.5) * 40;
+      const jy = y + (Math.random() - 0.5) * 40;
+      circuitNodes.push({ x: jx, y: jy, r: Math.random() * 2 + 1.5, pulse: Math.random() * Math.PI * 2 });
+      // Random horizontal or vertical traces
+      if (Math.random() < 0.5 && x + gridSpacingX < w) {
+        const tx = x + gridSpacingX + (Math.random() - 0.5) * 40;
+        const ty = jy + (Math.random() - 0.5) * 20;
+        circuitLines.push({ x1: jx, y1: jy, x2: tx, y2: ty, bright: Math.random() * 0.5 });
+      }
+      if (Math.random() < 0.5 && y + gridSpacingY < h) {
+        const tx = jx + (Math.random() - 0.5) * 20;
+        const ty = y + gridSpacingY + (Math.random() - 0.5) * 40;
+        circuitLines.push({ x1: jx, y1: jy, x2: tx, y2: ty, bright: Math.random() * 0.5 });
+      }
+      // Diagonal traces occasionally
+      if (Math.random() < 0.2) {
+        const tx = x + gridSpacingX * (Math.random() < 0.5 ? 1 : -1) + (Math.random() - 0.5) * 30;
+        const ty = y + gridSpacingY * (Math.random() < 0.5 ? 1 : -1) + (Math.random() - 0.5) * 30;
+        if (tx > 0 && tx < w && ty > 0 && ty < h) {
+          circuitLines.push({ x1: jx, y1: jy, x2: tx, y2: ty, bright: Math.random() * 0.3 });
+        }
+      }
+    }
+  }
+}
+initCircuit();
+
+function spawnElectricArc() {
   const startX = Math.random() * w;
-  const startY = Math.random() * h * 0.4;
-  meteors.push({
-    x: startX, y: startY,
-    vx: Math.cos(angle) * (Math.random() * 5 + 4),
-    vy: Math.sin(angle) * (Math.random() * 5 + 4),
-    len: Math.random() * 80 + 40,
+  const startY = Math.random() * h * 0.3;
+  const targetX = startX + (Math.random() - 0.5) * 400;
+  const targetY = startY + Math.random() * h * 0.6 + 100;
+  // Generate zigzag points
+  const segments = Math.floor(Math.random() * 8) + 6;
+  const points = [{ x: startX, y: startY }];
+  for (let i = 1; i < segments; i++) {
+    const t = i / segments;
+    const mx = startX + (targetX - startX) * t;
+    const my = startY + (targetY - startY) * t;
+    points.push({
+      x: mx + (Math.random() - 0.5) * 80,
+      y: my + (Math.random() - 0.5) * 30,
+    });
+  }
+  points.push({ x: targetX, y: targetY });
+  electricArcs.push({
+    points: points,
     life: 1,
-    decay: Math.random() * 0.008 + 0.006,
+    decay: Math.random() * 0.015 + 0.01,
+    width: Math.random() * 1.5 + 1,
+    branches: Math.random() < 0.4 ? generateBranches(points) : [],
   });
+}
+
+function generateBranches(mainPoints) {
+  const branches = [];
+  const num = Math.floor(Math.random() * 3) + 1;
+  for (let i = 0; i < num; i++) {
+    const idx = Math.floor(Math.random() * (mainPoints.length - 2)) + 1;
+    const p = mainPoints[idx];
+    const angle = Math.random() * Math.PI * 2;
+    const len = Math.random() * 60 + 20;
+    const segs = Math.floor(Math.random() * 3) + 2;
+    const pts = [{ x: p.x, y: p.y }];
+    for (let j = 1; j <= segs; j++) {
+      const t = j / segs;
+      pts.push({
+        x: p.x + Math.cos(angle) * len * t + (Math.random() - 0.5) * 20,
+        y: p.y + Math.sin(angle) * len * t + (Math.random() - 0.5) * 20,
+      });
+    }
+    branches.push(pts);
+  }
+  return branches;
 }
 
 // Update stars and draw everything
@@ -923,27 +1005,56 @@ drawStars = function() {
     }
   }
 
-  // Draw nebula blobs (behind stars)
-  for (const n of nebulaBlobs) {
-    n.x += n.dx; n.y += n.dy;
-    if (n.x > 1.2 || n.x < -0.2) n.dx *= -1;
-    if (n.y > 1.2 || n.y < -0.2) n.dy *= -1;
-    const g = ctx.createRadialGradient(n.x * w, n.y * h, 0, n.x * w, n.y * h, n.r);
-    g.addColorStop(0, `hsla(${n.hue}, 70%, 50%, 0.025)`);
-    g.addColorStop(0.5, `hsla(${n.hue}, 60%, 40%, 0.012)`);
-    g.addColorStop(1, 'transparent');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, w, h);
+  // Draw circuit board (behind stars)
+  const ct = Date.now() / 1000;
+  // Traces
+  ctx.lineWidth = 0.8;
+  for (const line of circuitLines) {
+    const pulse = Math.sin(ct * 0.5 + line.bright * 10) * 0.15 + 0.15;
+    ctx.strokeStyle = `rgba(60, 180, 100, ${pulse + line.bright * 0.1})`;
+    ctx.beginPath();
+    ctx.moveTo(line.x1, line.y1);
+    ctx.lineTo(line.x2, line.y2);
+    ctx.stroke();
+  }
+  // Nodes
+  for (const node of circuitNodes) {
+    const p = Math.sin(ct * 0.8 + node.pulse) * 0.3 + 0.4;
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(80, 200, 120, ${p})`;
+    ctx.fill();
+    // Glow
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.r * 4, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(60, 180, 100, ${p * 0.15})`;
+    ctx.fill();
+  }
+  // Pulse travelling along some traces
+  for (let i = 0; i < circuitLines.length; i++) {
+    if (i % 7 === Math.floor(ct * 2) % 7) {
+      const line = circuitLines[i];
+      const t = (ct * 1.5 + i) % 1;
+      const px = line.x1 + (line.x2 - line.x1) * t;
+      const py = line.y1 + (line.y2 - line.y1) * t;
+      ctx.beginPath();
+      ctx.arc(px, py, 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(120, 240, 160, 0.6)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(px, py, 8, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(100, 220, 140, 0.15)';
+      ctx.fill();
+    }
   }
 
   // Draw regular stars
   origDrawStars();
 
   // Pulsar glow rings
-  const t = Date.now() / 1000;
   for (const s of stars) {
     if (s.pulsar && s.vx === undefined) {
-      const pulse = Math.sin(t * (2 / s.pulsarPeriod) + s.pulsarPhase) * 0.4 + 0.6;
+      const pulse = Math.sin(ct * (2 / s.pulsarPeriod) + s.pulsarPhase) * 0.4 + 0.6;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r * 5, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(80, 170, 100, ${pulse * 0.08})`;
@@ -979,36 +1090,50 @@ drawStars = function() {
     }
   }
 
-  // Spawn meteors randomly
-  if (Math.random() < 0.008) spawnMeteor();
+  // Spawn electric arcs randomly
+  if (Math.random() < 0.01) spawnElectricArc();
 
-  // Draw & update meteors
-  for (let i = meteors.length - 1; i >= 0; i--) {
-    const m = meteors[i];
-    m.x += m.vx;
-    m.y += m.vy;
-    m.life -= m.decay;
-    if (m.life <= 0 || m.x < -100 || m.x > w + 100 || m.y < -100 || m.y > h + 100) {
-      meteors.splice(i, 1);
+  // Draw & update electric arcs
+  for (let i = electricArcs.length - 1; i >= 0; i--) {
+    const arc = electricArcs[i];
+    arc.life -= arc.decay;
+    if (arc.life <= 0) {
+      electricArcs.splice(i, 1);
       continue;
     }
-    const tailX = m.x - m.vx * m.len / 8;
-    const tailY = m.y - m.vy * m.len / 8;
-    const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
-    grad.addColorStop(0, 'rgba(160, 230, 170, 0)');
-    grad.addColorStop(0.7, `rgba(140, 220, 150, ${m.life * 0.5})`);
-    grad.addColorStop(1, `rgba(220, 255, 225, ${m.life * 0.9})`);
-    ctx.strokeStyle = grad;
-    ctx.lineWidth = 1.8;
+    // Main bolt
+    ctx.save();
+    ctx.shadowColor = `rgba(100, 200, 255, ${arc.life * 0.8})`;
+    ctx.shadowBlur = 12;
+    ctx.strokeStyle = `rgba(180, 240, 255, ${arc.life})`;
+    ctx.lineWidth = arc.width;
     ctx.beginPath();
-    ctx.moveTo(tailX, tailY);
-    ctx.lineTo(m.x, m.y);
+    ctx.moveTo(arc.points[0].x, arc.points[0].y);
+    for (let j = 1; j < arc.points.length; j++) {
+      ctx.lineTo(arc.points[j].x, arc.points[j].y);
+    }
     ctx.stroke();
-    // Bright head
+    // Inner bright core
+    ctx.strokeStyle = `rgba(255, 255, 255, ${arc.life * 0.7})`;
+    ctx.lineWidth = arc.width * 0.4;
     ctx.beginPath();
-    ctx.arc(m.x, m.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(220, 255, 225, ${m.life})`;
-    ctx.fill();
+    ctx.moveTo(arc.points[0].x, arc.points[0].y);
+    for (let j = 1; j < arc.points.length; j++) {
+      ctx.lineTo(arc.points[j].x, arc.points[j].y);
+    }
+    ctx.stroke();
+    ctx.restore();
+    // Branches
+    for (const branch of arc.branches) {
+      ctx.strokeStyle = `rgba(100, 200, 255, ${arc.life * 0.5})`;
+      ctx.lineWidth = arc.width * 0.5;
+      ctx.beginPath();
+      ctx.moveTo(branch[0].x, branch[0].y);
+      for (let j = 1; j < branch.length; j++) {
+        ctx.lineTo(branch[j].x, branch[j].y);
+      }
+      ctx.stroke();
+    }
   }
 };
 
