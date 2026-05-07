@@ -1055,7 +1055,7 @@ requestAnimationFrame(drawTerminalRain);
 
 const LOCAL_STEAM_API = localStorage.getItem('steam-api-base') || '/api/steam';
 const STEAM_API = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-  ? LOCAL_STEAM_API
+  ? LOCAL_STEAM_API.replace(/\/$/, '')
   : '/api/steam';
 const STATUS_MAP = {
   0: { text: '离线', cls: 'offline' }, 1: { text: '在线', cls: 'online' }, 2: { text: '忙碌', cls: 'busy' },
@@ -1075,7 +1075,7 @@ document.querySelectorAll('.steam-tab').forEach(tab => {
 async function loadSteamData() {
   const grid = document.getElementById('games-grid');
   try {
-    const r = await fetch(`${STEAM_API}/all`);
+    const r = await fetch(STEAM_API);
     if (!r.ok) throw new Error(`API error: ${r.status}`);
     const data = await r.json();
     steamState.profile = data.profile;
