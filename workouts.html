@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>训练记录 - ghostGJJ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#050208; --panel:rgba(28,11,3,.72); --text:#f7e8d0; --dim:#c59a77; --hot:#ff7a00; --soft:#ffd28a; --border:rgba(255,122,0,.24); }
+  body { min-height: 100vh; font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: radial-gradient(circle at 50% 0%, rgba(255,122,0,.12), transparent 34rem), linear-gradient(135deg,#020100,#110500); }
+  body::before { content:""; position: fixed; inset: 0; pointer-events: none; background: linear-gradient(rgba(255,122,0,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,122,0,.04) 1px, transparent 1px); background-size: 42px 42px; }
+  .wrap { position: relative; width: min(1120px, 100%); margin: 0 auto; padding: 44px 20px 70px; }
+  .back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 28px; color: var(--soft); text-decoration: none; font-weight: 800; letter-spacing: .08em; }
+  .hero { padding: 34px; border: 1px solid var(--border); border-radius: 22px; background: linear-gradient(145deg, rgba(22,9,2,.86), rgba(4,2,0,.76)); box-shadow: 0 18px 60px rgba(0,0,0,.36); }
+  .tag { color: var(--hot); font-size: 13px; letter-spacing: .22em; text-transform: uppercase; }
+  h1 { margin-top: 8px; color: var(--soft); font-size: clamp(32px, 6vw, 58px); line-height: 1.1; text-shadow: 0 0 18px rgba(255,122,0,.38); }
+  .summary { margin-top: 14px; color: var(--dim); }
+  .summary b { color: var(--soft); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; margin-top: 26px; }
+  .workout-card { border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: var(--panel); box-shadow: 0 12px 38px rgba(0,0,0,.32); transition: transform .22s ease, border-color .22s ease; }
+  .workout-card:hover { transform: translateY(-5px); border-color: rgba(255,210,138,.74); }
+  .workout-card img { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #120601; }
+  .workout-card span { display: block; padding: 12px 14px; color: var(--soft); font-weight: 800; }
+  @media (max-width: 520px) { .wrap { padding-inline: 14px; } .hero { padding: 24px; } .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="index.html">← 返回首页</a>
+    <section class="hero">
+      <p class="tag">Fitness Log</p>
+      <h1>训练记录</h1>
+      <p class="summary">已收录 <b>89</b> 天训记训练图片，点击卡片可查看原图。</p>
+    </section>
+    <section class="grid" aria-label="训练记录图片">
+      <article class="workout-card"><a href="workouts/Day%20001.png" target="_blank" rel="noopener"><img src="workouts/Day%20001.png" alt="Day 001" loading="lazy"></a><span>Day 001</span></article>
+      <article class="workout-card"><a href="workouts/Day%20002.png" target="_blank" rel="noopener"><img src="workouts/Day%20002.png" alt="Day 002" loading="lazy"></a><span>Day 002</span></article>
+      <article class="workout-card"><a href="workouts/Day%20003.png" target="_blank" rel="noopener"><img src="workouts/Day%20003.png" alt="Day 003" loading="lazy"></a><span>Day 003</span></article>
+      <article class="workout-card"><a href="workouts/Day%20004.png" target="_blank" rel="noopener"><img src="workouts/Day%20004.png" alt="Day 004" loading="lazy"></a><span>Day 004</span></article>
+      <article class="workout-card"><a href="workouts/Day%20005.png" target="_blank" rel="noopener"><img src="workouts/Day%20005.png" alt="Day 005" loading="lazy"></a><span>Day 005</span></article>
+      <article class="workout-card"><a href="workouts/Day%20006.png" target="_blank" rel="noopener"><img src="workouts/Day%20006.png" alt="Day 006" loading="lazy"></a><span>Day 006</span></article>
+      <article class="workout-card"><a href="workouts/Day%20007.png" target="_blank" rel="noopener"><img src="workouts/Day%20007.png" alt="Day 007" loading="lazy"></a><span>Day 007</span></article>
+      <article class="workout-card"><a href="workouts/Day%20008.png" target="_blank" rel="noopener"><img src="workouts/Day%20008.png" alt="Day 008" loading="lazy"></a><span>Day 008</span></article>
+      <article class="workout-card"><a href="workouts/Day%20009.png" target="_blank" rel="noopener"><img src="workouts/Day%20009.png" alt="Day 009" loading="lazy"></a><span>Day 009</span></article>
+      <article class="workout-card"><a href="workouts/Day%20010.png" target="_blank" rel="noopener"><img src="workouts/Day%20010.png" alt="Day 010" loading="lazy"></a><span>Day 010</span></article>
+      <article class="workout-card"><a href="workouts/Day%20011.png" target="_blank" rel="noopener"><img src="workouts/Day%20011.png" alt="Day 011" loading="lazy"></a><span>Day 011</span></article>
+      <article class="workout-card"><a href="workouts/Day%20012.png" target="_blank" rel="noopener"><img src="workouts/Day%20012.png" alt="Day 012" loading="lazy"></a><span>Day 012</span></article>
+      <article class="workout-card"><a href="workouts/Day%20013.png" target="_blank" rel="noopener"><img src="workouts/Day%20013.png" alt="Day 013" loading="lazy"></a><span>Day 013</span></article>
+      <article class="workout-card"><a href="workouts/Day%20014.png" target="_blank" rel="noopener"><img src="workouts/Day%20014.png" alt="Day 014" loading="lazy"></a><span>Day 014</span></article>
+      <article class="workout-card"><a href="workouts/Day%20015.png" target="_blank" rel="noopener"><img src="workouts/Day%20015.png" alt="Day 015" loading="lazy"></a><span>Day 015</span></article>
+      <article class="workout-card"><a href="workouts/Day%20016.png" target="_blank" rel="noopener"><img src="workouts/Day%20016.png" alt="Day 016" loading="lazy"></a><span>Day 016</span></article>
+      <article class="workout-card"><a href="workouts/Day%20017.png" target="_blank" rel="noopener"><img src="workouts/Day%20017.png" alt="Day 017" loading="lazy"></a><span>Day 017</span></article>
+      <article class="workout-card"><a href="workouts/Day%20018.png" target="_blank" rel="noopener"><img src="workouts/Day%20018.png" alt="Day 018" loading="lazy"></a><span>Day 018</span></article>
+      <article class="workout-card"><a href="workouts/Day%20019.png" target="_blank" rel="noopener"><img src="workouts/Day%20019.png" alt="Day 019" loading="lazy"></a><span>Day 019</span></article>
+      <article class="workout-card"><a href="workouts/Day%20020.png" target="_blank" rel="noopener"><img src="workouts/Day%20020.png" alt="Day 020" loading="lazy"></a><span>Day 020</span></article>
+      <article class="workout-card"><a href="workouts/Day%20021.png" target="_blank" rel="noopener"><img src="workouts/Day%20021.png" alt="Day 021" loading="lazy"></a><span>Day 021</span></article>
+      <article class="workout-card"><a href="workouts/Day%20022.png" target="_blank" rel="noopener"><img src="workouts/Day%20022.png" alt="Day 022" loading="lazy"></a><span>Day 022</span></article>
+      <article class="workout-card"><a href="workouts/Day%20023.png" target="_blank" rel="noopener"><img src="workouts/Day%20023.png" alt="Day 023" loading="lazy"></a><span>Day 023</span></article>
+      <article class="workout-card"><a href="workouts/Day%20024.png" target="_blank" rel="noopener"><img src="workouts/Day%20024.png" alt="Day 024" loading="lazy"></a><span>Day 024</span></article>
+      <article class="workout-card"><a href="workouts/Day%20025.png" target="_blank" rel="noopener"><img src="workouts/Day%20025.png" alt="Day 025" loading="lazy"></a><span>Day 025</span></article>
+      <article class="workout-card"><a href="workouts/Day%20026.png" target="_blank" rel="noopener"><img src="workouts/Day%20026.png" alt="Day 026" loading="lazy"></a><span>Day 026</span></article>
+      <article class="workout-card"><a href="workouts/Day%20027.png" target="_blank" rel="noopener"><img src="workouts/Day%20027.png" alt="Day 027" loading="lazy"></a><span>Day 027</span></article>
+      <article class="workout-card"><a href="workouts/Day%20028.png" target="_blank" rel="noopener"><img src="workouts/Day%20028.png" alt="Day 028" loading="lazy"></a><span>Day 028</span></article>
+      <article class="workout-card"><a href="workouts/Day%20029.png" target="_blank" rel="noopener"><img src="workouts/Day%20029.png" alt="Day 029" loading="lazy"></a><span>Day 029</span></article>
+      <article class="workout-card"><a href="workouts/Day%20030.png" target="_blank" rel="noopener"><img src="workouts/Day%20030.png" alt="Day 030" loading="lazy"></a><span>Day 030</span></article>
+      <article class="workout-card"><a href="workouts/Day%20031.png" target="_blank" rel="noopener"><img src="workouts/Day%20031.png" alt="Day 031" loading="lazy"></a><span>Day 031</span></article>
+      <article class="workout-card"><a href="workouts/Day%20032.png" target="_blank" rel="noopener"><img src="workouts/Day%20032.png" alt="Day 032" loading="lazy"></a><span>Day 032</span></article>
+      <article class="workout-card"><a href="workouts/Day%20033.png" target="_blank" rel="noopener"><img src="workouts/Day%20033.png" alt="Day 033" loading="lazy"></a><span>Day 033</span></article>
+      <article class="workout-card"><a href="workouts/Day%20034.png" target="_blank" rel="noopener"><img src="workouts/Day%20034.png" alt="Day 034" loading="lazy"></a><span>Day 034</span></article>
+      <article class="workout-card"><a href="workouts/Day%20035.png" target="_blank" rel="noopener"><img src="workouts/Day%20035.png" alt="Day 035" loading="lazy"></a><span>Day 035</span></article>
+      <article class="workout-card"><a href="workouts/Day%20036.png" target="_blank" rel="noopener"><img src="workouts/Day%20036.png" alt="Day 036" loading="lazy"></a><span>Day 036</span></article>
+      <article class="workout-card"><a href="workouts/Day%20037.png" target="_blank" rel="noopener"><img src="workouts/Day%20037.png" alt="Day 037" loading="lazy"></a><span>Day 037</span></article>
+      <article class="workout-card"><a href="workouts/Day%20038.png" target="_blank" rel="noopener"><img src="workouts/Day%20038.png" alt="Day 038" loading="lazy"></a><span>Day 038</span></article>
+      <article class="workout-card"><a href="workouts/Day%20039.png" target="_blank" rel="noopener"><img src="workouts/Day%20039.png" alt="Day 039" loading="lazy"></a><span>Day 039</span></article>
+      <article class="workout-card"><a href="workouts/Day%20040.png" target="_blank" rel="noopener"><img src="workouts/Day%20040.png" alt="Day 040" loading="lazy"></a><span>Day 040</span></article>
+      <article class="workout-card"><a href="workouts/Day%20041.png" target="_blank" rel="noopener"><img src="workouts/Day%20041.png" alt="Day 041" loading="lazy"></a><span>Day 041</span></article>
+      <article class="workout-card"><a href="workouts/Day%20042.png" target="_blank" rel="noopener"><img src="workouts/Day%20042.png" alt="Day 042" loading="lazy"></a><span>Day 042</span></article>
+      <article class="workout-card"><a href="workouts/Day%20043.png" target="_blank" rel="noopener"><img src="workouts/Day%20043.png" alt="Day 043" loading="lazy"></a><span>Day 043</span></article>
+      <article class="workout-card"><a href="workouts/Day%20044.png" target="_blank" rel="noopener"><img src="workouts/Day%20044.png" alt="Day 044" loading="lazy"></a><span>Day 044</span></article>
+      <article class="workout-card"><a href="workouts/Day%20045.png" target="_blank" rel="noopener"><img src="workouts/Day%20045.png" alt="Day 045" loading="lazy"></a><span>Day 045</span></article>
+      <article class="workout-card"><a href="workouts/Day%20046.png" target="_blank" rel="noopener"><img src="workouts/Day%20046.png" alt="Day 046" loading="lazy"></a><span>Day 046</span></article>
+      <article class="workout-card"><a href="workouts/Day%20047.png" target="_blank" rel="noopener"><img src="workouts/Day%20047.png" alt="Day 047" loading="lazy"></a><span>Day 047</span></article>
+      <article class="workout-card"><a href="workouts/Day%20048.png" target="_blank" rel="noopener"><img src="workouts/Day%20048.png" alt="Day 048" loading="lazy"></a><span>Day 048</span></article>
+      <article class="workout-card"><a href="workouts/Day%20049.png" target="_blank" rel="noopener"><img src="workouts/Day%20049.png" alt="Day 049" loading="lazy"></a><span>Day 049</span></article>
+      <article class="workout-card"><a href="workouts/Day%20050.png" target="_blank" rel="noopener"><img src="workouts/Day%20050.png" alt="Day 050" loading="lazy"></a><span>Day 050</span></article>
+      <article class="workout-card"><a href="workouts/Day%20051.png" target="_blank" rel="noopener"><img src="workouts/Day%20051.png" alt="Day 051" loading="lazy"></a><span>Day 051</span></article>
+      <article class="workout-card"><a href="workouts/Day%20052.png" target="_blank" rel="noopener"><img src="workouts/Day%20052.png" alt="Day 052" loading="lazy"></a><span>Day 052</span></article>
+      <article class="workout-card"><a href="workouts/Day%20053.png" target="_blank" rel="noopener"><img src="workouts/Day%20053.png" alt="Day 053" loading="lazy"></a><span>Day 053</span></article>
+      <article class="workout-card"><a href="workouts/Day%20054.png" target="_blank" rel="noopener"><img src="workouts/Day%20054.png" alt="Day 054" loading="lazy"></a><span>Day 054</span></article>
+      <article class="workout-card"><a href="workouts/Day%20055.png" target="_blank" rel="noopener"><img src="workouts/Day%20055.png" alt="Day 055" loading="lazy"></a><span>Day 055</span></article>
+      <article class="workout-card"><a href="workouts/Day%20056.png" target="_blank" rel="noopener"><img src="workouts/Day%20056.png" alt="Day 056" loading="lazy"></a><span>Day 056</span></article>
+      <article class="workout-card"><a href="workouts/Day%20057.png" target="_blank" rel="noopener"><img src="workouts/Day%20057.png" alt="Day 057" loading="lazy"></a><span>Day 057</span></article>
+      <article class="workout-card"><a href="workouts/Day%20058.png" target="_blank" rel="noopener"><img src="workouts/Day%20058.png" alt="Day 058" loading="lazy"></a><span>Day 058</span></article>
+      <article class="workout-card"><a href="workouts/Day%20059.png" target="_blank" rel="noopener"><img src="workouts/Day%20059.png" alt="Day 059" loading="lazy"></a><span>Day 059</span></article>
+      <article class="workout-card"><a href="workouts/Day%20060.png" target="_blank" rel="noopener"><img src="workouts/Day%20060.png" alt="Day 060" loading="lazy"></a><span>Day 060</span></article>
+      <article class="workout-card"><a href="workouts/Day%20061.png" target="_blank" rel="noopener"><img src="workouts/Day%20061.png" alt="Day 061" loading="lazy"></a><span>Day 061</span></article>
+      <article class="workout-card"><a href="workouts/Day%20062.png" target="_blank" rel="noopener"><img src="workouts/Day%20062.png" alt="Day 062" loading="lazy"></a><span>Day 062</span></article>
+      <article class="workout-card"><a href="workouts/Day%20063.png" target="_blank" rel="noopener"><img src="workouts/Day%20063.png" alt="Day 063" loading="lazy"></a><span>Day 063</span></article>
+      <article class="workout-card"><a href="workouts/Day%20064.png" target="_blank" rel="noopener"><img src="workouts/Day%20064.png" alt="Day 064" loading="lazy"></a><span>Day 064</span></article>
+      <article class="workout-card"><a href="workouts/Day%20065.png" target="_blank" rel="noopener"><img src="workouts/Day%20065.png" alt="Day 065" loading="lazy"></a><span>Day 065</span></article>
+      <article class="workout-card"><a href="workouts/Day%20066.png" target="_blank" rel="noopener"><img src="workouts/Day%20066.png" alt="Day 066" loading="lazy"></a><span>Day 066</span></article>
+      <article class="workout-card"><a href="workouts/Day%20067.png" target="_blank" rel="noopener"><img src="workouts/Day%20067.png" alt="Day 067" loading="lazy"></a><span>Day 067</span></article>
+      <article class="workout-card"><a href="workouts/Day%20068.png" target="_blank" rel="noopener"><img src="workouts/Day%20068.png" alt="Day 068" loading="lazy"></a><span>Day 068</span></article>
+      <article class="workout-card"><a href="workouts/Day%20069.png" target="_blank" rel="noopener"><img src="workouts/Day%20069.png" alt="Day 069" loading="lazy"></a><span>Day 069</span></article>
+      <article class="workout-card"><a href="workouts/Day%20070.png" target="_blank" rel="noopener"><img src="workouts/Day%20070.png" alt="Day 070" loading="lazy"></a><span>Day 070</span></article>
+      <article class="workout-card"><a href="workouts/Day%20071.png" target="_blank" rel="noopener"><img src="workouts/Day%20071.png" alt="Day 071" loading="lazy"></a><span>Day 071</span></article>
+      <article class="workout-card"><a href="workouts/Day%20072.png" target="_blank" rel="noopener"><img src="workouts/Day%20072.png" alt="Day 072" loading="lazy"></a><span>Day 072</span></article>
+      <article class="workout-card"><a href="workouts/Day%20073.png" target="_blank" rel="noopener"><img src="workouts/Day%20073.png" alt="Day 073" loading="lazy"></a><span>Day 073</span></article>
+      <article class="workout-card"><a href="workouts/Day%20074.png" target="_blank" rel="noopener"><img src="workouts/Day%20074.png" alt="Day 074" loading="lazy"></a><span>Day 074</span></article>
+      <article class="workout-card"><a href="workouts/Day%20075.png" target="_blank" rel="noopener"><img src="workouts/Day%20075.png" alt="Day 075" loading="lazy"></a><span>Day 075</span></article>
+      <article class="workout-card"><a href="workouts/Day%20076.png" target="_blank" rel="noopener"><img src="workouts/Day%20076.png" alt="Day 076" loading="lazy"></a><span>Day 076</span></article>
+      <article class="workout-card"><a href="workouts/Day%20077.png" target="_blank" rel="noopener"><img src="workouts/Day%20077.png" alt="Day 077" loading="lazy"></a><span>Day 077</span></article>
+      <article class="workout-card"><a href="workouts/Day%20078.png" target="_blank" rel="noopener"><img src="workouts/Day%20078.png" alt="Day 078" loading="lazy"></a><span>Day 078</span></article>
+      <article class="workout-card"><a href="workouts/Day%20079.png" target="_blank" rel="noopener"><img src="workouts/Day%20079.png" alt="Day 079" loading="lazy"></a><span>Day 079</span></article>
+      <article class="workout-card"><a href="workouts/Day%20080.png" target="_blank" rel="noopener"><img src="workouts/Day%20080.png" alt="Day 080" loading="lazy"></a><span>Day 080</span></article>
+      <article class="workout-card"><a href="workouts/Day%20081.png" target="_blank" rel="noopener"><img src="workouts/Day%20081.png" alt="Day 081" loading="lazy"></a><span>Day 081</span></article>
+      <article class="workout-card"><a href="workouts/Day%20082.png" target="_blank" rel="noopener"><img src="workouts/Day%20082.png" alt="Day 082" loading="lazy"></a><span>Day 082</span></article>
+      <article class="workout-card"><a href="workouts/Day%20083.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20083.jpg" alt="Day 083" loading="lazy"></a><span>Day 083</span></article>
+      <article class="workout-card"><a href="workouts/Day%20084.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20084.jpg" alt="Day 084" loading="lazy"></a><span>Day 084</span></article>
+      <article class="workout-card"><a href="workouts/Day%20085.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20085.jpg" alt="Day 085" loading="lazy"></a><span>Day 085</span></article>
+      <article class="workout-card"><a href="workouts/Day%20086.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20086.jpg" alt="Day 086" loading="lazy"></a><span>Day 086</span></article>
+      <article class="workout-card"><a href="workouts/Day%20087.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20087.jpg" alt="Day 087" loading="lazy"></a><span>Day 087</span></article>
+      <article class="workout-card"><a href="workouts/Day%20088.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20088.jpg" alt="Day 088" loading="lazy"></a><span>Day 088</span></article>
+      <article class="workout-card"><a href="workouts/Day%20089.jpg" target="_blank" rel="noopener"><img src="workouts/Day%20089.jpg" alt="Day 089" loading="lazy"></a><span>Day 089</span></article>
+    </section>
+  </main>
+</body>
+</html>
