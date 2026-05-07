@@ -1053,10 +1053,10 @@ window.addEventListener('resize', resizeTerminal);
 resizeTerminal();
 requestAnimationFrame(drawTerminalRain);
 
-const LOCAL_STEAM_API = localStorage.getItem('steam-api-base') || 'http://localhost:8788';
+const LOCAL_STEAM_API = localStorage.getItem('steam-api-base') || '/api/steam';
 const STEAM_API = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
   ? LOCAL_STEAM_API
-  : 'https://your-railway-app.up.railway.app';
+  : '/api/steam';
 const STATUS_MAP = {
   0: { text: '离线', cls: 'offline' }, 1: { text: '在线', cls: 'online' }, 2: { text: '忙碌', cls: 'busy' },
   3: { text: '离开', cls: 'away' }, 4: { text: '打盹', cls: 'away' }, 5: { text: '想交易', cls: 'online' }, 6: { text: '想玩', cls: 'online' }
@@ -1096,7 +1096,7 @@ async function loadSteamData() {
         return;
       }
     } catch {}
-    grid.innerHTML = `<div class="steam-error">Steam 数据加载失败<br><small>请确认本地 Node 后端已启动：<b>${escapeHTML(LOCAL_STEAM_API)}</b></small></div>`;
+    grid.innerHTML = `<div class="steam-error">Steam 数据加载失败<br><small>请确认 Vercel API 可访问：<b>${escapeHTML(STEAM_API)}</b></small></div>`;
   }
 }
 
