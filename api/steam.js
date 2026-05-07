@@ -1,7 +1,8 @@
 const STEAM_ID = process.env.STEAM_ID || '76561199043274708';
 const STEAM_API_KEY = process.env.STEAM_API_KEY || '5FC0FE329803936382BC3DAD855A2A68';
-const ACHIEVEMENT_CONCURRENCY = 6;
-const COMPLETION_SCAN_LIMIT = 120;
+const ACHIEVEMENT_CONCURRENCY = 4;
+const COMPLETION_SCAN_LIMIT = 30;
+const API_TIMEOUT_MS = 8500;
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,7 +27,11 @@ export default async function handler(req, res) {
 async function getAll() {
   const profile = await getProfile();
   const games = await getGamesData();
-  const achievements = await getCompletedGames(games.games);
+  const achievements = await withTimeout(
+    getCompletedGames(games.games),
+    API_TIMEOUT_MS,
+    { count: 0, games: [], scanned: 0, partial: true }
+  );
   return { profile, games, achievements };
 }
 
@@ -116,13 +121,14 @@ async function steamFetch(path, params = {}) {
   url.searchParams.set('format', 'json');
   for (const [key, value] of Object.entries(params)) url.searchParams.set(key, String(value));
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal: AbortSignal.timeout(API_TIMEOUT_MS) });
   if (!response.ok) throw new Error(`Steam API ${path}: ${response.status}`);
   return response.json();
 }
 
 async function fetchXML(url) {
   const response = await fetch(url, {
+    signal: AbortSignal.timeout(API_TIMEOUT_MS),
     headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120' },
   });
   if (!response.ok) throw new Error(`Fetch ${url}: ${response.status}`);
@@ -140,6 +146,20 @@ async function mapConcurrent(items, limit, fn) {
   });
   await Promise.all(workers);
   return results;
+}
+
+async function withTimeout(promise, ms, fallback) {
+  let timer;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise(resolve => {
+        timer = setTimeout(() => resolve(fallback), ms);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function xmlGet(xml, tag) {

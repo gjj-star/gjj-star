@@ -1143,8 +1143,10 @@ function renderAchievements(data) {
     grid.innerHTML = '<div class="steam-error">白金游戏数据需要 Steam API Key<br><small>请确认本地 Node 后端或 Railway 环境变量已配置 STEAM_API_KEY</small></div>';
     return;
   }
-  summary.innerHTML = `已扫描 <b>${data.scanned || 0}</b> 款有游玩时长的游戏 · 找到 <b>${data.count || 0}</b> 款白金游戏`;
-  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">暂未找到白金游戏，或部分游戏成就数据不可见</div>'; return; }
+  summary.innerHTML = data.partial
+    ? `白金游戏扫描超时 · 已先显示游戏时长 Top10`
+    : `已扫描 <b>${data.scanned || 0}</b> 款有游玩时长的游戏 · 找到 <b>${data.count || 0}</b> 款白金游戏`;
+  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">暂未找到白金游戏，或扫描耗时较久；时长 Top10 已正常加载</div>'; return; }
   const maxH = Math.max(...data.games.map(g => g.hours), 1);
   grid.innerHTML = data.games.map((g, i) => gameCardHTML(g, maxH, i, false, true)).join('');
   document.querySelectorAll('#achievement-grid .fade-in').forEach(el => observer.observe(el));
