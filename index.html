@@ -560,6 +560,9 @@
   .steam-panel { display: none; }
   .steam-panel.active { display: block; }
   .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .achievement-summary { margin-bottom: 16px; color: var(--text-dim); font-size: 13px; }
+  .achievement-summary b { color: var(--orange-200); }
+  .completion-badge { margin-top: 6px; color: var(--orange-200); font-size: 12px; font-weight: 800; }
   .game-card { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px; transition: all .28s ease; }
   .game-card:hover { transform: translateX(4px); }
   .game-card img { width: 44px; height: 44px; border-radius: 9px; flex-shrink: 0; }
@@ -789,9 +792,9 @@
       <div class="steam-avatar-wrap"><img class="steam-avatar" id="steam-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Crect width='72' height='72' rx='36' fill='%231a0a03'/%3E%3Ctext x='36' y='44' text-anchor='middle' fill='%23ff9e44' font-size='24'%3E%3F%3C/text%3E%3C/svg%3E" alt="avatar"><div class="steam-status-dot" id="steam-status-dot"></div></div>
       <div><div class="steam-player-name" id="steam-player-name">加载中...</div><div class="steam-player-status" id="steam-player-status"></div><div class="steam-stats-row" id="steam-stats-row"></div></div>
     </div>
-    <div class="steam-tabs" id="steam-tabs"><button class="steam-tab active" data-tab="games">游戏库</button><button class="steam-tab" data-tab="recent">最近游玩</button></div>
+    <div class="steam-tabs" id="steam-tabs"><button class="steam-tab active" data-tab="games">时长 Top10</button><button class="steam-tab" data-tab="platinum">白金游戏</button></div>
     <div class="steam-panel active" id="panel-games"><div class="steam-total" id="steam-total"></div><div class="games-grid" id="games-grid"><div class="steam-loading">正在同步 Steam 游戏数据...</div></div></div>
-    <div class="steam-panel" id="panel-recent"><div class="games-grid" id="recent-grid"><div class="steam-loading">加载中...</div></div></div>
+    <div class="steam-panel" id="panel-platinum"><div class="achievement-summary" id="achievement-summary">正在扫描 Steam 成就数据...</div><div class="games-grid" id="achievement-grid"><div class="steam-loading">加载中...</div></div></div>
   </section>
 
   <section class="fade-in" id="findme">
@@ -1050,12 +1053,15 @@ window.addEventListener('resize', resizeTerminal);
 resizeTerminal();
 requestAnimationFrame(drawTerminalRain);
 
-const STEAM_API = 'https://steam-proxy.ghostgjj.workers.dev';
+const LOCAL_STEAM_API = localStorage.getItem('steam-api-base') || 'http://localhost:8788';
+const STEAM_API = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  ? LOCAL_STEAM_API
+  : 'https://your-railway-app.up.railway.app';
 const STATUS_MAP = {
   0: { text: '离线', cls: 'offline' }, 1: { text: '在线', cls: 'online' }, 2: { text: '忙碌', cls: 'busy' },
   3: { text: '离开', cls: 'away' }, 4: { text: '打盹', cls: 'away' }, 5: { text: '想交易', cls: 'online' }, 6: { text: '想玩', cls: 'online' }
 };
-const steamState = { profile: null, games: null, recent: null };
+const steamState = { profile: null, games: null, achievements: null };
 
 document.querySelectorAll('.steam-tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -1074,23 +1080,23 @@ async function loadSteamData() {
     const data = await r.json();
     steamState.profile = data.profile;
     steamState.games = data.games;
-    steamState.recent = data.recent;
+    steamState.achievements = data.achievements;
     renderProfile(data.profile);
     renderGames(data.games);
-    renderRecent(data.recent);
+    renderAchievements(data.achievements);
   } catch (e) {
     try {
       const r2 = await fetch('/api/steam');
       const data2 = await r2.json();
       if (data2.games && data2.games.length > 0) {
         document.getElementById('steam-player-name').textContent = 'ghostGJJ';
-        document.getElementById('steam-total').innerHTML = `共 <b>${data2.count}</b> 款游戏 · 总时长 <b>${data2.totalHours}</b> 小时`;
-        grid.innerHTML = data2.games.map((g, i) => gameCardHTML(g, data2.games[0].hours, i)).join('');
+        document.getElementById('steam-total').innerHTML = `共 <b>${data2.count}</b> 款游戏 · 总时长 <b>${data2.totalHours}</b> 小时 · 展示 <b>Top 10</b>`;
+        grid.innerHTML = data2.games.slice(0, 10).map((g, i) => gameCardHTML(g, data2.games[0].hours, i)).join('');
         document.querySelectorAll('#games-grid .fade-in').forEach(el => observer.observe(el));
         return;
       }
     } catch {}
-    grid.innerHTML = '<div class="steam-error">Steam 数据加载失败<br><small>请确认 Cloudflare Worker 已部署并配置了 STEAM_API_KEY</small></div>';
+    grid.innerHTML = `<div class="steam-error">Steam 数据加载失败<br><small>请确认本地 Node 后端已启动：<b>${escapeHTML(LOCAL_STEAM_API)}</b></small></div>`;
   }
 }
 
@@ -1110,7 +1116,7 @@ function renderProfile(p) {
   document.getElementById('steam-stats-row').innerHTML = `
     <div class="steam-stat"><b>${steamState.games?.count || 0}</b> 款游戏</div>
     <div class="steam-stat"><b>${steamState.games?.totalHours || 0}</b> 小时</div>
-    <div class="steam-stat"><b>${steamState.recent?.count || 0}</b> 近期活跃</div>`;
+    <div class="steam-stat"><b>${steamState.achievements?.count || 0}</b> 白金</div>`;
   if (p.profileurl) document.getElementById('steam-avatar').parentElement.addEventListener('click', () => window.open(p.profileurl, '_blank'));
 }
 
@@ -1119,31 +1125,48 @@ function renderGames(data) {
   const totalEl = document.getElementById('steam-total');
   if (data.error === 'NO_API_KEY') {
     totalEl.innerHTML = '';
-    grid.innerHTML = '<div class="steam-error">游戏数据需要 Steam API Key<br><small>请访问 <a href="https://steamcommunity.com/dev/apikey" target="_blank">steamcommunity.com/dev/apikey</a> 申请后配置</small></div>';
+    grid.innerHTML = '<div class="steam-error">游戏数据需要 Steam API Key<br><small>请确认本地 Node 后端或 Railway 环境变量已配置 STEAM_API_KEY</small></div>';
     return;
   }
-  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">未找到游戏数据</div>'; return; }
-  totalEl.innerHTML = `共 <b>${data.count}</b> 款游戏 · 总时长 <b>${data.totalHours}</b> 小时`;
-  grid.innerHTML = data.games.map((g, i) => gameCardHTML(g, data.games[0].hours, i)).join('');
+  const games = data.top10 || data.games?.slice(0, 10) || [];
+  if (games.length === 0) { grid.innerHTML = '<div class="steam-loading">未找到游戏数据</div>'; return; }
+  totalEl.innerHTML = `共 <b>${data.count}</b> 款游戏 · 总时长 <b>${data.totalHours}</b> 小时 · 展示 <b>Top 10</b>`;
+  grid.innerHTML = games.map((g, i) => gameCardHTML(g, games[0].hours, i)).join('');
   document.querySelectorAll('#games-grid .fade-in').forEach(el => observer.observe(el));
 }
 
-function renderRecent(data) {
-  const grid = document.getElementById('recent-grid');
-  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">需要 API Key 才能显示游玩记录</div>'; return; }
-  const maxH = Math.max(...data.games.map(g => g.hours_2weeks), 1);
-  grid.innerHTML = data.games.map((g, i) => gameCardHTML({ ...g, hours: g.hours_2weeks, recent: g.hours_total }, maxH, i, true)).join('');
-  document.querySelectorAll('#recent-grid .fade-in').forEach(el => observer.observe(el));
+function renderAchievements(data) {
+  const summary = document.getElementById('achievement-summary');
+  const grid = document.getElementById('achievement-grid');
+  if (!data || data.error === 'NO_API_KEY') {
+    summary.innerHTML = '';
+    grid.innerHTML = '<div class="steam-error">白金游戏数据需要 Steam API Key<br><small>请确认本地 Node 后端或 Railway 环境变量已配置 STEAM_API_KEY</small></div>';
+    return;
+  }
+  summary.innerHTML = `已扫描 <b>${data.scanned || 0}</b> 款有游玩时长的游戏 · 找到 <b>${data.count || 0}</b> 款白金游戏`;
+  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">暂未找到白金游戏，或部分游戏成就数据不可见</div>'; return; }
+  const maxH = Math.max(...data.games.map(g => g.hours), 1);
+  grid.innerHTML = data.games.map((g, i) => gameCardHTML(g, maxH, i, false, true)).join('');
+  document.querySelectorAll('#achievement-grid .fade-in').forEach(el => observer.observe(el));
 }
 
-function gameCardHTML(g, maxHours, i, recent = false) {
+function gameCardHTML(g, maxHours, i, recent = false, completed = false) {
   const fallback = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231a0a03'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23ff9e44' font-size='12'%3E?%3C/text%3E%3C/svg%3E";
   return `<div class="game-card fade-in" style="transition-delay:${Math.min(i * 25, 260)}ms">
-    <img src="${g.icon || fallback}" alt="${g.name}" loading="lazy" onerror="this.src='${fallback}'">
-    <div class="game-info"><div class="game-name" title="${g.name}">${g.name}</div>
+    <img src="${escapeAttr(g.icon || fallback)}" alt="${escapeAttr(g.name)}" loading="lazy" onerror="this.src='${fallback}'">
+    <div class="game-info"><div class="game-name" title="${escapeAttr(g.name)}">${escapeHTML(g.name)}</div>
       <div class="game-hours-row"><div class="game-hours-bar"><div class="game-hours-fill" style="width:${Math.min(100, (g.hours / maxHours * 100) || 0)}%"></div></div><span class="game-hours-num">${g.hours}h</span></div>
-      ${recent ? `<div class="game-recent">总时长 ${g.recent}h</div>` : (g.recent > 0 ? `<div class="game-recent">近两周 ${g.recent}h</div>` : '')}
+      ${completed ? `<div class="completion-badge">白金 ${g.unlocked}/${g.total}</div>` : ''}
+      ${recent ? `<div class="game-recent">总时长 ${g.recent}h</div>` : (!completed && g.recent > 0 ? `<div class="game-recent">近两周 ${g.recent}h</div>` : '')}
     </div></div>`;
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+}
+
+function escapeAttr(value) {
+  return escapeHTML(value).replace(/'/g, '&#39;');
 }
 
 loadSteamData();
