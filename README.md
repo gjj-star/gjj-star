@@ -3,11 +3,6 @@
 </p>
 
 <p align="center">
-  <a href="https://ghostgjj.vercel.app/">个人网站</a> ·
-  <a href="https://github.com/gjj-star/gjj-star">项目仓库</a>
-</p>
-
-<p align="center">
   <a href="https://ghostgjj.vercel.app/"><img src="https://img.shields.io/badge/Website-ghostgjj.vercel.app-ff9e44?style=flat-square&logo=google-chrome&labelColor=050208"></a>
   <a href="https://github.com/gjj-star"><img src="https://img.shields.io/badge/GitHub-gjj--star-ff9e44?style=flat-square&logo=github&labelColor=050208"></a>
   <a href="https://space.bilibili.com/365775522"><img src="https://img.shields.io/badge/Bilibili-攢硬幣改昵称-ff9e44?style=flat-square&logo=bilibili&labelColor=050208"></a>
@@ -41,11 +36,12 @@
 ### 🛠 技术栈
 
 ![HTML5](https://img.shields.io/badge/-HTML5-050208?style=flat-square&logo=html5&logoColor=ff9e44)
-![CSS3](https://img.shields.io/badge/-CSS3-050208?style=flat-square&logo=css3&logoColor=ff9e44)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-050208?style=flat-square&logo=javascript&logoColor=ff9e44)
+![TypeScript](https://img.shields.io/badge/-TypeScript-050208?style=flat-square&logo=typescript&logoColor=ff9e44)
 ![Python](https://img.shields.io/badge/-Python-050208?style=flat-square&logo=python&logoColor=ff9e44)
+![Kotlin](https://img.shields.io/badge/-Kotlin-050208?style=flat-square&logo=kotlin&logoColor=ff9e44)
+![Node.js](https://img.shields.io/badge/-Node.js-050208?style=flat-square&logo=node.js&logoColor=ff9e44)
 ![Vue.js](https://img.shields.io/badge/-Vue3-050208?style=flat-square&logo=vuedotjs&logoColor=ff9e44)
-![Tableau](https://img.shields.io/badge/-Tableau-050208?style=flat-square&logo=tableau&logoColor=ff9e44)
 ![MySQL](https://img.shields.io/badge/-MySQL-050208?style=flat-square&logo=mysql&logoColor=ff9e44)
 ![Notion](https://img.shields.io/badge/-Notion-050208?style=flat-square&logo=notion&logoColor=ff9e44)
 
@@ -59,5 +55,5 @@
 ---
 
 <p align="center">
-  <i>既然你在为过去后悔，就该庆幸自己醒悟的及时。</i>
+  <i>别睡太晚，梦会变短</i>
 </p>
