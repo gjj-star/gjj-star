@@ -12,7 +12,7 @@
 
 ---
 
-### // 关于我
+### ◈ 关于我
 
 你好，我是**亦青**，也可以叫我 **ghostGJJ**。
 
@@ -20,7 +20,7 @@
 
 早上睡不醒、下午健身和打游戏、晚上写代码。偶尔买买打折的游戏但是懒得玩。
 
-### // 技能 & 工具箱
+### ◈ 技能 & 工具箱
 
 | | 方向 | 关键词 |
 |------|------|--------|
@@ -29,11 +29,11 @@
 | › | 前端实现 | Vue3 / HTML5 / CSS / JavaScript，交互与页面 |
 | › | 协作工具 | 墨刀 / XMind / Notion / Apifox，准产品经理 |
 
-### // 兴趣爱好
+### ◈ 兴趣爱好
 
 4X 死忠粉 / 肉鸽发烧友 · R&B / 周杰伦 / 陶喆 / 方大同 · 力量训练 · 本格推理 / 硬核科幻 · GitHub 常驻居民 · B站 / 抖音 / 小黑盒创作
 
-### // 技术栈
+### ◈ 技术栈
 
 ![HTML5](https://img.shields.io/badge/-HTML5-050208?style=flat-square&logo=html5&logoColor=ff9e44)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-050208?style=flat-square&logo=javascript&logoColor=ff9e44)
