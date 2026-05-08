@@ -22,9 +22,9 @@
 
 ### <img src="icon-interests.svg" width="20" /> 兴趣爱好
 
-<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=steam&logoColor=050208" width="14" /> 4X 死忠粉 / 肉鸽发烧友　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=spotify&logoColor=050208" width="14" /> R&B / 周杰伦 / 陶喆 / 方大同　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=strava&logoColor=050208" width="14" /> 力量训练
+<img src="icon-game.svg" width="16" /> 4X 死忠粉 / 肉鸽发烧友　·　<img src="icon-music.svg" width="16" /> R&B / 周杰伦 / 陶喆 / 方大同　·　<img src="icon-fitness.svg" width="16" /> 力量训练
 
-<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=goodreads&logoColor=050208" width="14" /> 本格推理 / 硬核科幻　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=github&logoColor=050208" width="14" /> GitHub 常驻居民　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=bilibili&logoColor=050208" width="14" /> B站 / 抖音 / 小黑盒
+<img src="icon-book.svg" width="16" /> 本格推理 / 硬核科幻　·　<img src="icon-open.svg" width="16" /> GitHub 常驻居民　·　<img src="icon-create.svg" width="16" /> B站 / 抖音 / 小黑盒
 
 ### <img src="icon-tech.svg" width="20" /> 技术栈
 
