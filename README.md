@@ -3,6 +3,11 @@
 </p>
 
 <p align="center">
+  <a href="https://ghostgjj.vercel.app/">个人网站</a> ·
+  <a href="https://github.com/gjj-star/gjj-star">项目仓库</a>
+</p>
+
+<p align="center">
   <a href="https://github.com/gjj-star"><img src="https://img.shields.io/badge/GitHub-gjj--star-3b8beb?style=flat-square&logo=github"></a>
 </p>
 
