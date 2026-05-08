@@ -12,7 +12,7 @@
 
 ---
 
-### ◈ 关于我
+### <img src="https://img.shields.io/badge/-ff9e44?style=flat-square&logo=aboutdotme&logoColor=050208" width="16" /> 关于我
 
 你好，我是**亦青**，也可以叫我 **ghostGJJ**。
 
@@ -20,22 +20,13 @@
 
 早上睡不醒、下午健身和打游戏、晚上写代码。偶尔买买打折的游戏但是懒得玩。
 
-### ◈ 技能 & 工具箱
+### <img src="https://img.shields.io/badge/-ff9e44?style=flat-square&logo=controller&logoColor=050208" width="16" /> 兴趣爱好
 
-| 方向 | 关键词 |
-|------|--------|
-| ![](https://img.shields.io/badge/-AI产品-050208?style=flat&logo=huggingface&logoColor=ff9e44) | Gemini / Claude / GPT / DeepSeek，vibe coding |
-| ![](https://img.shields.io/badge/-数据分析-050208?style=flat&logo=chartdotjs&logoColor=ff9e44) | Python / Tableau / R / MySQL，可视化分析 |
-| ![](https://img.shields.io/badge/-前端实现-050208?style=flat&logo=javascript&logoColor=ff9e44) | Vue3 / HTML5 / CSS / JavaScript，交互与页面 |
-| ![](https://img.shields.io/badge/-协作工具-050208?style=flat&logo=git&logoColor=ff9e44) | 墨刀 / XMind / Notion / Apifox，准产品经理 |
+<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=steam&logoColor=050208" width="14" /> 4X 死忠粉 / 肉鸽发烧友　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=spotify&logoColor=050208" width="14" /> R&B / 周杰伦 / 陶喆 / 方大同　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=strava&logoColor=050208" width="14" /> 力量训练
 
-### ◈ 兴趣爱好
+<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=goodreads&logoColor=050208" width="14" /> 本格推理 / 硬核科幻　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=github&logoColor=050208" width="14" /> GitHub 常驻居民　·　<img src="https://img.shields.io/badge/-ff9e44?style=flat&logo=bilibili&logoColor=050208" width="14" /> B站 / 抖音 / 小黑盒
 
-![](https://img.shields.io/badge/游戏-050208?style=flat&logo=steam&logoColor=ff9e44) 4X 死忠粉 / 肉鸽发烧友　·　![](https://img.shields.io/badge/音乐-050208?style=flat&logo=spotify&logoColor=ff9e44) R&B / 周杰伦 / 陶喆 / 方大同　·　![](https://img.shields.io/badge/健身-050208?style=flat&logo=strava&logoColor=ff9e44) 力量训练
-
-![](https://img.shields.io/badge/小说-050208?style=flat&logo=goodreads&logoColor=ff9e44) 本格推理 / 硬核科幻　·　![](https://img.shields.io/badge/开源-050208?style=flat&logo=github&logoColor=ff9e44) GitHub 常驻居民　·　![](https://img.shields.io/badge/创作-050208?style=flat&logo=bilibili&logoColor=ff9e44) B站 / 抖音 / 小黑盒
-
-### ◈ 技术栈
+### <img src="https://img.shields.io/badge/-ff9e44?style=flat-square&logo=terminal&logoColor=050208" width="16" /> 技术栈
 
 ![HTML5](https://img.shields.io/badge/-HTML5-050208?style=flat-square&logo=html5&logoColor=ff9e44)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-050208?style=flat-square&logo=javascript&logoColor=ff9e44)
