@@ -22,16 +22,18 @@
 
 ### ◈ 技能 & 工具箱
 
-| | 方向 | 关键词 |
-|------|------|--------|
-| › | AI 产品 | Gemini / Claude / GPT / DeepSeek，vibe coding |
-| › | 数据分析 | Python / Tableau / R / MySQL，可视化分析 |
-| › | 前端实现 | Vue3 / HTML5 / CSS / JavaScript，交互与页面 |
-| › | 协作工具 | 墨刀 / XMind / Notion / Apifox，准产品经理 |
+| 方向 | 关键词 |
+|------|--------|
+| ![](https://img.shields.io/badge/-AI产品-050208?style=flat&logo=huggingface&logoColor=ff9e44) | Gemini / Claude / GPT / DeepSeek，vibe coding |
+| ![](https://img.shields.io/badge/-数据分析-050208?style=flat&logo=chartdotjs&logoColor=ff9e44) | Python / Tableau / R / MySQL，可视化分析 |
+| ![](https://img.shields.io/badge/-前端实现-050208?style=flat&logo=javascript&logoColor=ff9e44) | Vue3 / HTML5 / CSS / JavaScript，交互与页面 |
+| ![](https://img.shields.io/badge/-协作工具-050208?style=flat&logo=git&logoColor=ff9e44) | 墨刀 / XMind / Notion / Apifox，准产品经理 |
 
 ### ◈ 兴趣爱好
 
-4X 死忠粉 / 肉鸽发烧友 · R&B / 周杰伦 / 陶喆 / 方大同 · 力量训练 · 本格推理 / 硬核科幻 · GitHub 常驻居民 · B站 / 抖音 / 小黑盒创作
+![](https://img.shields.io/badge/游戏-050208?style=flat&logo=steam&logoColor=ff9e44) 4X 死忠粉 / 肉鸽发烧友　·　![](https://img.shields.io/badge/音乐-050208?style=flat&logo=spotify&logoColor=ff9e44) R&B / 周杰伦 / 陶喆 / 方大同　·　![](https://img.shields.io/badge/健身-050208?style=flat&logo=strava&logoColor=ff9e44) 力量训练
+
+![](https://img.shields.io/badge/小说-050208?style=flat&logo=goodreads&logoColor=ff9e44) 本格推理 / 硬核科幻　·　![](https://img.shields.io/badge/开源-050208?style=flat&logo=github&logoColor=ff9e44) GitHub 常驻居民　·　![](https://img.shields.io/badge/创作-050208?style=flat&logo=bilibili&logoColor=ff9e44) B站 / 抖音 / 小黑盒
 
 ### ◈ 技术栈
 
