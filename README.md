@@ -8,9 +8,11 @@
 </p>
 
 <p align="center">
+  <a href="https://ghostgjj.vercel.app/"><img src="https://img.shields.io/badge/Website-ghostgjj.vercel.app-ff9e44?style=flat-square&logo=google-chrome&labelColor=050208"></a>
   <a href="https://github.com/gjj-star"><img src="https://img.shields.io/badge/GitHub-gjj--star-ff9e44?style=flat-square&logo=github&labelColor=050208"></a>
   <a href="https://space.bilibili.com/365775522"><img src="https://img.shields.io/badge/Bilibili-攢硬幣改昵称-ff9e44?style=flat-square&logo=bilibili&labelColor=050208"></a>
-  <a href="https://steamcommunity.com/"><img src="https://img.shields.io/badge/Steam-亦青-ff9e44?style=flat-square&logo=steam&labelColor=050208"></a>
+  <a href="https://steamcommunity.com/profiles/76561199043274708/"><img src="https://img.shields.io/badge/Steam-亦青-ff9e44?style=flat-square&logo=steam&labelColor=050208"></a>
+  <a href="https://www.douyin.com/user/MS4wLjABAAAA8tFuj1IkC-3rEXsfFsNolZPru3wpdPQ6MzZmEcjMY6Jk29krSnn0oiM_NjCOsviX"><img src="https://img.shields.io/badge/抖音-他宝贝的我让你飞起来-ff9e44?style=flat-square&logo=tiktok&labelColor=050208"></a>
 </p>
 
 ---
