@@ -762,17 +762,17 @@
   <section class="fade-in" id="skills">
     <p class="section-tag">✦ Skills</p><h2 class="section-title">技能 & 工具箱</h2>
     <div class="skills-grid">
-      <div class="skill-card"><div class="skill-icon">🖥️</div><h3>前端开发</h3><p>HTML / CSS / JavaScript，喜欢做有设计感的交互页面</p></div>
-      <div class="skill-card"><div class="skill-icon">⚙️</div><h3>后端 & 工具</h3><p>Python / Node.js，写脚本、搭服务、自动化一切</p></div>
-      <div class="skill-card"><div class="skill-icon">🎮</div><h3>游戏开发</h3><p>Unity / Unreal 摸鱼选手，Steam 库存永远在增长</p></div>
-      <div class="skill-card"><div class="skill-icon">🎬</div><h3>视频剪辑</h3><p>Pr / 达芬奇，B站和抖音的业余 UP 主</p></div>
-      <div class="skill-card"><div class="skill-icon">📱</div><h3>移动端开发</h3><p>Kotlin / Android，写有趣的 App</p></div>
+      <div class="skill-card"><div class="skill-icon">🧭</div><h3>产品策划</h3><p>需求分析 / 信息架构 / 原型设计，把业务问题拆成可落地方案</p></div>
+      <div class="skill-card"><div class="skill-icon">🤖</div><h3>AI 产品</h3><p>DeepSeek / Claude / Gemini / Kimi，关注 Agent、RAG 与 Prompt Engineering</p></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><h3>数据分析</h3><p>Python / Pandas / Scikit-learn / MySQL，做清洗、建模和可视化</p></div>
+      <div class="skill-card"><div class="skill-icon">🖥️</div><h3>前端实现</h3><p>Vue3 / HTML / CSS / JavaScript，小程序和个人站都能从 0 到 1 搭起来</p></div>
+      <div class="skill-card"><div class="skill-icon">🧰</div><h3>协作工具</h3><p>墨刀 / XMind / Notion / Apifox，能写接口规范也能推动协作落地</p></div>
     </div>
     <div class="skill-bar-wrap" id="skill-bars">
-      <div><div class="skill-bar-label"><span>代码能力</span><span>—</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div></div>
-      <div><div class="skill-bar-label"><span>游戏时长</span><span>—</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92%"></div></div></div>
-      <div><div class="skill-bar-label"><span>视频剪辑</span><span>—</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="60%"></div></div></div>
-      <div><div class="skill-bar-label"><span>社交能力</span><span>—</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="35%"></div></div></div>
+      <div><div class="skill-bar-label"><span>产品策划</span><span>需求 / 原型 / 协同</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88%"></div></div></div>
+      <div><div class="skill-bar-label"><span>AI 工具链</span><span>LLM / Agent / RAG</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="82%"></div></div></div>
+      <div><div class="skill-bar-label"><span>数据分析</span><span>Python / 建模</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80%"></div></div></div>
+      <div><div class="skill-bar-label"><span>前端实现</span><span>Vue3 / JS</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="78%"></div></div></div>
     </div>
   </section>
 
@@ -794,7 +794,7 @@
       <div class="steam-avatar-wrap"><img class="steam-avatar" id="steam-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Crect width='72' height='72' rx='36' fill='%231a0a03'/%3E%3Ctext x='36' y='44' text-anchor='middle' fill='%23ff9e44' font-size='24'%3E%3F%3C/text%3E%3C/svg%3E" alt="avatar"><div class="steam-status-dot" id="steam-status-dot"></div></div>
       <div><div class="steam-player-name" id="steam-player-name">加载中...</div><div class="steam-player-status" id="steam-player-status"></div><div class="steam-stats-row" id="steam-stats-row"></div></div>
     </div>
-    <div class="steam-tabs" id="steam-tabs"><button class="steam-tab active" data-tab="games">时长 Top10</button><button class="steam-tab" data-tab="platinum">白金游戏</button></div>
+    <div class="steam-tabs" id="steam-tabs"><button class="steam-tab active" data-tab="games">时长 Top10</button><button class="steam-tab" data-tab="platinum">完美通关游戏</button></div>
     <div class="steam-panel active" id="panel-games"><div class="steam-total" id="steam-total"></div><div class="games-grid" id="games-grid"><div class="steam-loading">正在同步 Steam 游戏数据...</div></div></div>
     <div class="steam-panel" id="panel-platinum"><div class="achievement-summary" id="achievement-summary">正在扫描 Steam 成就数据...</div><div class="games-grid" id="achievement-grid"><div class="steam-loading">加载中...</div></div></div>
   </section>
@@ -1118,7 +1118,7 @@ function renderProfile(p) {
   document.getElementById('steam-stats-row').innerHTML = `
     <div class="steam-stat"><b>${steamState.games?.count || 0}</b> 款游戏</div>
     <div class="steam-stat"><b>${steamState.games?.totalHours || 0}</b> 小时</div>
-    <div class="steam-stat"><b>${steamState.achievements?.count || 0}</b> 白金</div>`;
+    <div class="steam-stat"><b>${steamState.achievements?.count || 0}</b> 完美通关</div>`;
   if (p.profileurl) document.getElementById('steam-avatar').parentElement.addEventListener('click', () => window.open(p.profileurl, '_blank'));
 }
 
@@ -1142,13 +1142,13 @@ function renderAchievements(data) {
   const grid = document.getElementById('achievement-grid');
   if (!data || data.error === 'NO_API_KEY') {
     summary.innerHTML = '';
-    grid.innerHTML = '<div class="steam-error">白金游戏数据需要 Steam API Key<br><small>请确认本地 Node 后端或 Railway 环境变量已配置 STEAM_API_KEY</small></div>';
+    grid.innerHTML = '<div class="steam-error">完美通关游戏数据需要 Steam API Key<br><small>请确认本地 Node 后端或 Railway 环境变量已配置 STEAM_API_KEY</small></div>';
     return;
   }
   summary.innerHTML = data.partial
-    ? `白金游戏扫描超时 · 已先显示游戏时长 Top10`
-    : `已扫描 <b>${data.scanned || 0}</b> 款有游玩时长的游戏 · 找到 <b>${data.count || 0}</b> 款白金游戏`;
-  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">暂未找到白金游戏，或扫描耗时较久；时长 Top10 已正常加载</div>'; return; }
+    ? `完美通关游戏扫描超时 · 已先显示游戏时长 Top10`
+    : `已扫描 <b>${data.scanned || 0}</b> 款有游玩时长的游戏 · 找到 <b>${data.count || 0}</b> 款完美通关游戏`;
+  if (!data.games || data.games.length === 0) { grid.innerHTML = '<div class="steam-loading">暂未找到完美通关游戏，或扫描耗时较久；时长 Top10 已正常加载</div>'; return; }
   const maxH = Math.max(...data.games.map(g => g.hours), 1);
   grid.innerHTML = data.games.map((g, i) => gameCardHTML(g, maxH, i, false, true)).join('');
   document.querySelectorAll('#achievement-grid .fade-in').forEach(el => observer.observe(el));
@@ -1160,7 +1160,7 @@ function gameCardHTML(g, maxHours, i, recent = false, completed = false) {
     <img src="${escapeAttr(g.icon || fallback)}" alt="${escapeAttr(g.name)}" loading="lazy" onerror="this.src='${fallback}'">
     <div class="game-info"><div class="game-name" title="${escapeAttr(g.name)}">${escapeHTML(g.name)}</div>
       <div class="game-hours-row"><div class="game-hours-bar"><div class="game-hours-fill" style="width:${Math.min(100, (g.hours / maxHours * 100) || 0)}%"></div></div><span class="game-hours-num">${g.hours}h</span></div>
-      ${completed ? `<div class="completion-badge">白金 ${g.unlocked}/${g.total}</div>` : ''}
+      ${completed ? `<div class="completion-badge">完美通关 ${g.unlocked}/${g.total}</div>` : ''}
       ${recent ? `<div class="game-recent">总时长 ${g.recent}h</div>` : (!completed && g.recent > 0 ? `<div class="game-recent">近两周 ${g.recent}h</div>` : '')}
     </div></div>`;
 }
