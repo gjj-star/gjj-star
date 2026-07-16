@@ -692,6 +692,26 @@
     .steam-profile { flex-direction: column; align-items: center; text-align: center; }
     .steam-stats-row { justify-content: center; }
   }
+
+  /* ===== 作品集（新增：质感继承 .glass-card，仅补专属布局/交互） ===== */
+  .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+  .work-card { padding: 24px 22px; display: flex; flex-direction: column; transition: all .28s ease; }
+  .work-card:hover { transform: translateY(-5px); border-color: var(--border-hot); box-shadow: var(--glow), 0 18px 60px rgba(0,0,0,.42); background: var(--panel-hot); }
+  .work-head { display: flex; align-items: center; gap: 13px; margin-bottom: 10px; }
+  .work-ico { width: 40px; height: 40px; flex-shrink: 0; color: var(--orange-300); display: flex; align-items: center; justify-content: center; }
+  .work-ico svg { width: 30px; height: 30px; }
+  .work-card h3 { color: var(--orange-200); font-size: 16.5px; font-weight: 700; }
+  .work-role { color: var(--text-dim); font-size: 12.5px; }
+  .work-card p { color: var(--text-dim); font-size: 13.5px; margin: 4px 0 14px; flex: 1; }
+  .work-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+  .work-tag { font-size: 11.5px; padding: 3px 10px; border: 1px solid var(--border); border-radius: 99px; color: var(--text-dim); }
+  .work-links { display: flex; gap: 10px; margin-top: auto; }
+  .work-btn { flex: 1; text-align: center; padding: 9px 0; border-radius: 10px; font-size: 13px; border: 1px solid var(--border); color: var(--orange-200); text-decoration: none; transition: all .22s ease; }
+  .work-btn.primary { background: rgba(var(--term-r), var(--term-g), var(--term-b), .18); border-color: var(--border-hot); font-weight: 700; }
+  .work-btn:hover { border-color: var(--border-hot); box-shadow: var(--glow); color: #fff; }
+  .work-btn.disabled { pointer-events: none; opacity: .4; }
+  @media (max-width: 480px) { .works-grid { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
@@ -715,6 +735,7 @@
       <li><a href="#about">关于</a></li>
       <li><a href="#skills">技能</a></li>
       <li><a href="#interests">兴趣</a></li>
+      <li><a href="#works">作品集</a></li>
       <li><a href="#steam">游戏</a></li>
       <li><a href="#findme">找到我</a></li>
     </ul>
@@ -784,6 +805,92 @@
       <div class="interest-card"><div class="interest-emoji">📚</div><h3>小说</h3><p>本格推理 / 硬核科幻</p></div>
       <div class="interest-card"><div class="interest-emoji">💻</div><h3>开源</h3><p>GitHub 常驻居民</p></div>
       <div class="interest-card"><div class="interest-emoji">📹</div><h3>创作</h3><p>B站 / 抖音 / 小黑盒 / 日常</p></div>
+    </div>
+  </section>
+
+  <section class="fade-in" id="works">
+    <p class="section-tag">✦ Works</p><h2 class="section-title">作品集</h2>
+    <p style="color:var(--text-dim);max-width:680px;margin:-18px 0 30px">把散落在 GitHub 里的真实项目串起来 —— 证明我会做 AI 产品，而不只是说自己会。</p>
+    <div class="works-grid">
+
+      <div class="work-card glass-card">
+        <div class="work-head">
+          <div class="work-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+          <div><h3>Resume Map</h3><div class="work-role">AI 简历能力地图 · 评估教练层</div></div>
+        </div>
+        <p>上传简历即生成能力雷达图、风险点与 P0/P1/P2 补强路线。零 API 纯前端规则引擎，配套完整 PRD 与三足竞品拆解。</p>
+        <div class="work-tags"><span class="work-tag">AI 产品</span><span class="work-tag">前端</span><span class="work-tag">PRD</span><span class="work-tag">规则引擎</span></div>
+        <div class="work-links">
+          <a class="work-btn primary" href="https://github.com/gjj-star/resume-map" target="_blank" rel="noopener">GitHub</a>
+          <span class="work-btn disabled">在线预览</span>
+        </div>
+      </div>
+
+      <div class="work-card glass-card">
+        <div class="work-head">
+          <div class="work-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"/></svg></div>
+          <div><h3>Beecarbonize-Wiki</h3><div class="work-role">游戏中文 Wiki 站 · Vue3</div></div>
+        </div>
+        <p>面向英文独立游戏的简体中文百科，Vue3 构建，7 个内容页面 + 85KB 结构化卡牌数据，验证信息架构与前端落地。</p>
+        <div class="work-tags"><span class="work-tag">Vue3</span><span class="work-tag">前端</span><span class="work-tag">数据</span><span class="work-tag">信息架构</span></div>
+        <div class="work-links">
+          <a class="work-btn primary" href="https://github.com/gjj-star/Beecarbonize-Wiki" target="_blank" rel="noopener">GitHub</a>
+          <span class="work-btn disabled">在线预览</span>
+        </div>
+      </div>
+
+      <div class="work-card glass-card">
+        <div class="work-head">
+          <div class="work-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12l5-3" stroke-linecap="round"/><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/></svg></div>
+          <div><h3>AI 竞品雷达</h3><div class="work-role">高保真产品原型</div></div>
+        </div>
+        <p>AI 产品竞品监控工具的高保真原型，双页演示 + 内嵌 PRD 说明，展示从用户场景到功能结构的产品设计思路。</p>
+        <div class="work-tags"><span class="work-tag">产品原型</span><span class="work-tag">竞品分析</span><span class="work-tag">交互</span></div>
+        <div class="work-links">
+          <a class="work-btn primary" href="https://github.com/gjj-star/resume-map" target="_blank" rel="noopener">GitHub</a>
+          <span class="work-btn disabled">在线预览</span>
+        </div>
+      </div>
+
+      <div class="work-card glass-card">
+        <div class="work-head">
+          <div class="work-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M10 18h4" stroke-linecap="round"/></svg></div>
+          <div><h3>沉香小程序</h3><div class="work-role">微信小程序 · 产品 + 前端</div></div>
+        </div>
+        <p>微信小程序端落地项目，覆盖需求梳理到前端实现，体现在受限平台下的产品设计权衡与交付能力。</p>
+        <div class="work-tags"><span class="work-tag">小程序</span><span class="work-tag">产品</span><span class="work-tag">前端</span></div>
+        <div class="work-links">
+          <a class="work-btn primary" href="https://github.com/gjj-star/cxxcx" target="_blank" rel="noopener">GitHub</a>
+          <span class="work-btn disabled">在线预览</span>
+        </div>
+      </div>
+
+      <div class="work-card glass-card">
+        <div class="work-head">
+          <div class="work-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l3 6 6 .9-4.5 4.3 1 6.3L12 17.8 6.5 20.5l1-6.3L3 9.9 9 9z" stroke-linejoin="round"/></svg></div>
+          <div><h3>GemTycoon-Demo</h3><div class="work-role">游戏交互 Demo · 前端</div></div>
+        </div>
+        <p>宝石大亨放置类游戏的前端交互 Demo，验证状态管理与交互手感，体现对"好玩"的产品直觉。</p>
+        <div class="work-tags"><span class="work-tag">前端</span><span class="work-tag">交互</span><span class="work-tag">游戏</span></div>
+        <div class="work-links">
+          <a class="work-btn primary" href="https://github.com/gjj-star/GemTycoon-Demo" target="_blank" rel="noopener">GitHub</a>
+          <span class="work-btn disabled">在线预览</span>
+        </div>
+      </div>
+
+      <div class="work-card glass-card">
+        <div class="work-head">
+          <div class="work-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 4h7l4 4v12H7z" stroke-linejoin="round"/><path d="M13 4v4h4" stroke-linejoin="round"/></svg></div>
+          <div><h3>PRD & 竞品拆解</h3><div class="work-role">产品文档产出</div></div>
+        </div>
+        <p>Resume Map 12 章正式 PRD + 小析 / 飞职 / Resume Map 三足错位竞争拆解，作为产品基本功的书面佐证。</p>
+        <div class="work-tags"><span class="work-tag">PRD</span><span class="work-tag">竞品分析</span><span class="work-tag">战略</span></div>
+        <div class="work-links">
+          <a class="work-btn primary" href="https://github.com/gjj-star/resume-map" target="_blank" rel="noopener">GitHub</a>
+          <span class="work-btn disabled">查看文档</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
