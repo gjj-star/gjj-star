@@ -1,6 +1,8 @@
+<!-- 顶部卡片已隐藏（仅主页不显示，未删除）：如需恢复，删除下面两行注释标记即可
 <p align="center">
   <img src="card.svg" width="100%" style="max-width:840px" alt="gjj-star">
 </p>
+-->
 
 <p align="center">
   <a href="https://ghostgjj.vercel.app/"><img src="https://img.shields.io/badge/Website-ghostgjj.vercel.app-ff9e44?style=flat-square&logo=google-chrome&labelColor=050208"></a>
