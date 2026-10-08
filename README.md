@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/intro-dark.svg">
-    <img src="assets/intro-light.svg" width="487" alt="oii-neo — Always an apprentice">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gjj-star/gjj-star/master/assets/intro-dark.svg">
+    <img src="https://raw.githubusercontent.com/gjj-star/gjj-star/master/assets/intro-light.svg" width="487" alt="oii-neo — Always an apprentice">
   </picture>
 </p>
 
