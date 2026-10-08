@@ -1,0 +1,41 @@
+name: Build intro SVG
+
+# profile.json is the single source of truth for the intro animation: whatever
+# is in it gets typed out on the profile page. This rebuilds the two themed
+# SVGs whenever the data (or the generator) changes.
+
+on:
+  push:
+    paths:
+      - 'profile.json'
+      - 'tools/build_intro.py'
+      - '.github/workflows/build-intro.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Rebuild the animated SVG from profile.json
+        run: python tools/build_intro.py
+
+      - name: Commit the rebuilt files when they changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/intro-dark.svg assets/intro-light.svg
+          if git diff --staged --quiet; then
+            echo "intro SVG is already up to date"
+          else
+            git commit -m "chore: rebuild intro SVG from profile.json"
+            git push
+          fi
