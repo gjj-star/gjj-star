@@ -107,6 +107,17 @@ def cells(ch: str) -> int:
     return 2 if unicodedata.east_asian_width(ch) in ("W", "F") else 1
 
 
+def write_lf(path: Path, text: str) -> None:
+    """Write UTF-8 with LF endings.
+
+    Python translates newlines on Windows, which would make the committed SVG
+    differ from the one the Linux CI runner generates and turn every scheduled
+    rebuild into a spurious commit.
+    """
+    with path.open("w", encoding="utf-8", newline="\n") as fh:
+        fh.write(text)
+
+
 def colorize_json(text: str) -> list[tuple[str, str]]:
     """Split JSON into (char, kind) pairs; kind is one of the theme keys."""
     out: list[tuple[str, str]] = []
@@ -314,7 +325,7 @@ def main() -> None:
     if args.out:
         svg = render(THEMES[args.theme or "dark"], args.frame, args.caret_color)
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(svg, encoding="utf-8")
+        write_lf(args.out, svg)
         print(f"wrote {args.out}  ({len(svg.encode('utf-8')):,} bytes)")
         return
 
@@ -322,7 +333,7 @@ def main() -> None:
     for name, theme in THEMES.items():
         out = ASSETS_DIR / f"intro-{name}.svg"
         svg = render(theme)
-        out.write_text(svg, encoding="utf-8")
+        write_lf(out, svg)
         print(f"wrote {out.relative_to(ROOT)}  ({len(svg.encode('utf-8')):,} bytes)")
 
 

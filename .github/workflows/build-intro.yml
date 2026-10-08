@@ -19,9 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
@@ -35,7 +35,8 @@ jobs:
           git add assets/intro-dark.svg assets/intro-light.svg
           if git diff --staged --quiet; then
             echo "intro SVG is already up to date"
-          else
-            git commit -m "chore: rebuild intro SVG from profile.json"
-            git push
+            exit 0
           fi
+          git commit -m "chore: rebuild intro SVG from profile.json"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
