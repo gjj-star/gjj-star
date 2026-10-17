@@ -12,10 +12,6 @@
   <a href="https://www.xiaohongshu.com/user/profile/64a4e1e1000000000a0232a1"><img src="https://img.shields.io/badge/小红书-过纠结-ff9e44?style=flat-square&logo=xiaohongshu&labelColor=050208"></a>
 </p>
 
-<p align="center">
-  <i>别睡太晚，梦会变短</i>
-</p>
-
 <!-- 这段动画不是手写的 SVG：profile.json 是唯一数据源，tools/build_intro.py 把它
      渲染成 assets/intro-dark.svg 与 assets/intro-light.svg（按访客主题自动切换）。
      改 profile.json 并推送到 master，.github/workflows/build-intro.yml 会自动重建。
